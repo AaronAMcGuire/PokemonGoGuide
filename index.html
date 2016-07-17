@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang='en-gb' ng-app='pokemon'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta content='Aaron McGuire' name='author'>
+    <meta name='description' content='AngularJS Pokemon Go searchable guide'>
+    <meta name='keywords' content='Pokemon Go, Pokemon, Candy, Eggs, Rarity, Evolution, Pokedex'>
+    <meta name="theme-color" content="#62A9DD">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+    <link rel='stylesheet' href='sass/style.css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <script src='app/angular.min.js'></script>
+    <script src='app/angular-animate.min.js'></script>
+    <script src='app/app.js'></script>
+
+
+
+</head>
+
+<body>
+    <div class='container'>
+        <header ng-include="'header.html'">
+        </header>
+        <div ng-controller='pokemonController'>
+
+            <div class='filter-list'>
+                <span class='order'>Order by:</span>
+                <button ng-click="filter ='name'">Name</button>
+                <button ng-click="filter =''">Number</button>
+                <button ng-click="filter ='type'">Type</button>
+            </div>
+            <input type='text' ng-model='search' placeholder="Search for a Pokemon">
+            <ul>
+                <li class='fade'ng-repeat='pokemon in pokemons |orderBy: filter | filter: search'><span class='side-border'></span><img height='110' ng-src="{{pokemon.thumb}}">
+                     <div class='meta-info'> <h2>{{pokemon.name}}</h2>
+                    <h3>Type:  {{pokemon.type}}</h3><img class='candy' height='25' alt='' ng-src="{{pokemon.candy}}">
+                  <span class='evolution'>{{pokemon.evolution}}</span><span class='rarity'>Rarity: {{pokemon.rarity}}</span></div>
+                    <p ng-show='showme'>{{pokemon.description}}</p>
+                    <a href='' title='' class='expand' ng-click="showme = !showme"><img class='arrow' src='images/down-arrow.svg' width='25' height='25'></a>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <footer ng-include="'footer.html'" class='group'>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src='app/script.js'></script>
+</body>
+
+</html>
